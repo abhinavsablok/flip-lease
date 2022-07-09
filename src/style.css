@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .topContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    padding: 20px;
+  }
+  
+  .header {
+    font-family: 'Averta Std';
+    color: #ffe69a;
+  }
+  
+  .button {
+    flex: 1;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #ffe69a;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    border: none;
+  }
+  
+  .button:disabled {
+    background-color: #bdbdbd;
+  }
+  
+  .buttonSpacer {
+    width: 10px;
+  }
+  
