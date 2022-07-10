@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import logo from './images/FLIP_logo_rounded.png';
 import './App.css';
 
-import { Rental } from './views/Rental/Rental';
+import { Lease } from './views/Rental/Rental';
 import { NotFound } from './views/Rental/NotFound';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route
             path="/lease/:id"
-            element={<Rental />}
+            element={<Lease />}
           />
           <Route
             element={<NotFound />}

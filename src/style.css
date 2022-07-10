@@ -32,12 +32,25 @@
     color: #000;
     border: none;
   }
+
+  .squareButton {
+    flex: 1;
+    height: 40px;
+    width: 40px;
+    max-width: 40px;
+    border-radius: 20px;
+    background-color: #ffe69a;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    border: none;
+  }
   
   .button:disabled {
     background-color: #bdbdbd;
   }
   
   .buttonSpacer {
-    width: 10px;
+    width: 5px;
   }
   
