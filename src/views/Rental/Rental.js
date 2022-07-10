@@ -88,6 +88,54 @@ export function Lease() {
     });
   };
 
+  const triggerHatch = () => {
+    API({
+      url: `/leases/${id}/control`,
+      data: { type: 'hatch' },
+      method: 'post',
+    });
+
+    toast.success('Opening hatch...', {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      }
+    });
+  };
+
+  const triggerShutdown = () => {
+    API({
+      url: `/leases/${id}/control`,
+      data: { type: 'shutdown' },
+      method: 'post',
+    });
+
+    toast.success('Shutting down...', {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      }
+    });
+  };
+
+  const triggerStartup = () => {
+    API({
+      url: `/leases/${id}/control`,
+      data: { type: 'startup' },
+      method: 'post',
+    });
+
+    toast.success('Starting up...', {
+      style: {
+        borderRadius: '10px',
+        background: '#333',
+        color: '#fff',
+      }
+    });
+  };
+
   return (
     <div className="container">
       <div><Toaster position="top-right"/></div>
@@ -131,7 +179,22 @@ export function Lease() {
         <button className="squareButton" onClick={triggerRefresh} disabled={!lease}>
           <i className="mdi mdi-refresh" />
         </button>
-      </div>
+        </div>}
+
+        {lease && lease.lease.extraActions &&
+        <div className="buttonContainer">
+          <button className="button" onClick={triggerShutdown} disabled={!lease}>
+            <i className="mdi mdi-power-standby" /> Shutdown
+          </button>
+          <span className="buttonSpacer" />
+          <button className="button" onClick={triggerStartup} disabled={!lease}>
+            <i className="mdi mdi-power-standby" /> Startup
+          </button>
+          <span className="buttonSpacer" />
+          <button className="button" onClick={triggerHatch} disabled={!lease}>
+            <i className="mdi mdi-battery-lock-open" /> Hatch
+          </button>
+        </div>
       }
     </div>
   );
