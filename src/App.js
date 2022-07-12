@@ -16,13 +16,8 @@ function App() {
 
         <div className="App">
         <Routes>
-          <Route
-            path="/lease/:id"
-            element={<Lease />}
-          />
-          <Route
-            element={<NotFound />}
-          />
+          <Route exact path="/lease/:id" element={<Lease />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         </div>
       </div>

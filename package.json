@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "dotenv": "^16.0.1",
+    "env-cmd": "^10.1.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,7 +24,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync build/ s3://flip-lease"
+    "predeploy": "env-cmd .env.production npm run build",
+    "deploy": "aws s3 sync build/ s3://flip-lease --delete",
+    "postdeploy": "aws cloudfront create-invalidation --distribution-id E2ZESSVS42SNCY --paths '/*'"
   },
   "eslintConfig": {
     "extends": [

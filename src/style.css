@@ -17,11 +17,6 @@
     padding: 20px;
   }
   
-  .header {
-    font-family: 'Averta Std';
-    color: #ffe69a;
-  }
-  
   .button {
     flex: 1;
     height: 40px;

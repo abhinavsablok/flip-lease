@@ -152,7 +152,14 @@ export function Lease() {
             <span>Lock State: {lease.vehicle.locked ? 'Locked' : 'Unlocked'}</span>
             <span>Charging: {lease.vehicle.charging ? 'Yes' : 'No'}</span>
             <span>Last GPS: {moment(lease.vehicle.lastContact).fromNow()}</span>
-            <span>Location: {lease.vehicle.location.coordinates[1]}, {lease.vehicle.location.coordinates[0]}</span>
+            <span>Location: <a
+              className="appLink"
+              href={`https://www.google.com/maps/search/?api=1&query=${lease.vehicle.location.coordinates[1]}%2C${lease.vehicle.location.coordinates[0]}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open In Google Maps
+            </a></span>
             <hr></hr>
             <label><b>Battery</b></label>
             <span>{lease.vehicle.batteryPercentage}%</span>
@@ -179,22 +186,23 @@ export function Lease() {
         <button className="squareButton" onClick={triggerRefresh} disabled={!lease}>
           <i className="mdi mdi-refresh" />
         </button>
-        </div>}
+      </div>
+      }
 
-        {lease && lease.lease.extraActions &&
-        <div className="buttonContainer">
-          <button className="button" onClick={triggerShutdown} disabled={!lease}>
-            <i className="mdi mdi-power-standby" /> Shutdown
-          </button>
-          <span className="buttonSpacer" />
-          <button className="button" onClick={triggerStartup} disabled={!lease}>
-            <i className="mdi mdi-power-standby" /> Startup
-          </button>
-          <span className="buttonSpacer" />
-          <button className="button" onClick={triggerHatch} disabled={!lease}>
-            <i className="mdi mdi-battery-lock-open" /> Hatch
-          </button>
-        </div>
+      {lease && lease.lease.extraActions &&
+      <div className="buttonContainer">
+        <button className="button" onClick={triggerShutdown} disabled={!lease}>
+        <i className="mdi mdi-power-standby" /> Shutdown
+        </button>
+        <span className="buttonSpacer" />
+        <button className="button" onClick={triggerStartup} disabled={!lease}>
+          <i className="mdi mdi-power-standby" /> Startup
+        </button>
+        <span className="buttonSpacer" />
+        <button className="button" onClick={triggerHatch} disabled={!lease}>
+          <i className="mdi mdi-battery-lock-open" /> Hatch
+        </button>
+      </div>
       }
     </div>
   );
