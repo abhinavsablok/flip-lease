@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../../style.css';
 import logo from '../../images/FLIP_text.png';
-import { API } from '../../api';
+import { API, normalizedAPIError } from '../../api';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import moment from 'moment';
@@ -25,115 +25,171 @@ export function Lease() {
       });
   }, [id]);
 
-  const triggerUnlock = () => {
-    API({
-      url: `/leases/${id}/control`,
-      data: { type: 'unlock' },
-      method: 'post',
-    });
-
-    toast.success('Unlocking scooter...', {
-      style: {
-        borderRadius: '10px',
-        background: '#333',
-        color: '#fff',
+  const triggerUnlock = async () => {
+    try {
+        await API({
+          url: `/leases/${id}/control`,
+          data: { type: 'unlock' },
+          method: 'post',
+        });
+  
+        toast.success('Unlocking scooter...', {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
+      } catch (error) {
+        toast.error(normalizedAPIError(error).message, {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
       }
-    });
-  };
+    };
 
-  const triggerLock = () => {
-    API({
-      url: `/leases/${id}/control`,
-      data: { type: 'lock' },
-      method: 'post',
-    });
-
-    toast.success('Locking scooter...', {
-      style: {
-        borderRadius: '10px',
-        background: '#333',
-        color: '#fff',
+  const triggerLock = async () => {
+    try {
+        await API({
+          url: `/leases/${id}/control`,
+          data: { type: 'lock' },
+          method: 'post',
+        });
+  
+        toast.success('Locking scooter...', {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
+      } catch (error) {
+        toast.error(normalizedAPIError(error).message, {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
       }
-    });
-  };
-  const triggerRing = () => {
-    API({
-      url: `/leases/${id}/control`,
-      data: { type: 'toot' },
-      method: 'post',
-    });
+    };
 
-    toast.success('Ringing scooter...', {
-      style: {
-        borderRadius: '10px',
-        background: '#333',
-        color: '#fff',
+  const triggerRing = async () => {
+    try {
+        await API({
+          url: `/leases/${id}/control`,
+          data: { type: 'toot' },
+          method: 'post',
+        });
+  
+        toast.success('Ringing scooter...', {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
+      } catch (error) {
+        toast.error(normalizedAPIError(error).message, {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
       }
-    });
-  };
+    };
 
-  const triggerRefresh = () => {
-    API({
+  const triggerRefresh = async () => {
+    await API({
       url: `/leases/${id}/control`,
       data: { type: 'refresh' },
       method: 'post',
-    });
+    })
+    window.location.reload(false)
 
-    toast.success('Refreshing...', {
-      style: {
-        borderRadius: '10px',
-        background: '#333',
-        color: '#fff',
-      }
-    });
+    toast.success('Refreshing...');
   };
 
-  const triggerHatch = () => {
-    API({
-      url: `/leases/${id}/control`,
-      data: { type: 'hatch' },
-      method: 'post',
-    });
-
-    toast.success('Opening hatch...', {
-      style: {
-        borderRadius: '10px',
-        background: '#333',
-        color: '#fff',
+  const triggerHatch = async () => {
+    try {
+        await API({
+          url: `/leases/${id}/control`,
+          data: { type: 'hatch' },
+          method: 'post',
+        });
+  
+        toast.success('Opening hatch...', {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
+      } catch (error) {
+        toast.error(normalizedAPIError(error).message, {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
       }
-    });
-  };
+    };
 
-  const triggerShutdown = () => {
-    API({
-      url: `/leases/${id}/control`,
-      data: { type: 'shutdown' },
-      method: 'post',
-    });
-
-    toast.success('Shutting down...', {
-      style: {
-        borderRadius: '10px',
-        background: '#333',
-        color: '#fff',
+  const triggerShutdown = async () => {
+    try {
+        await API({
+          url: `/leases/${id}/control`,
+          data: { type: 'shutdown' },
+          method: 'post',
+        });
+  
+        toast.success('Shutting down...', {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
+      } catch (error) {
+        toast.error(normalizedAPIError(error).message, {
+          style: {
+            borderRadius: '10px',
+            background: '#333',
+            color: '#fff',
+          }
+        });
       }
-    });
-  };
+    };
 
-  const triggerStartup = () => {
-    API({
-      url: `/leases/${id}/control`,
-      data: { type: 'startup' },
-      method: 'post',
-    });
+  const triggerStartup = async () => {
+    try {
+      await API({
+        url: `/leases/${id}/control`,
+        data: { type: 'startup' },
+        method: 'post',
+      });
 
-    toast.success('Starting up...', {
-      style: {
-        borderRadius: '10px',
-        background: '#333',
-        color: '#fff',
-      }
-    });
+      toast.success('Starting up...', {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        }
+      });
+    } catch (error) {
+      toast.error(normalizedAPIError(error).message, {
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        }
+      });
+    }
   };
 
   return (
