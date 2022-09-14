@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export const normalizedAPIError = (error) => {
-    if (error.response && error.response.data && error.response.data.error) {
-      return { message: error.response.data.error };
+    if (error.response && error.response.data && error.response.data.msg) {
+      return { message: error.response.data.msg };
     }
   
     if (error.message) {

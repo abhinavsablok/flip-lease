@@ -81,7 +81,7 @@ export function Lease() {
     try {
         await API({
           url: `/leases/${id}/control`,
-          data: { type: 'toot' },
+          data: { type: 'ring' },
           method: 'post',
         });
   
@@ -207,14 +207,16 @@ export function Lease() {
             <label><b>Vehicle Info</b></label>
             <span>Lock State: {lease.vehicle.locked ? 'Locked' : 'Unlocked'}</span>
             <span>Charging: {lease.vehicle.charging ? 'Yes' : 'No'}</span>
-            <span>Last GPS: {moment(lease.vehicle.lastContact).fromNow()}</span>
+            <span>Last GPS: {lease.vehicle.lastContactTime && moment(lease.vehicle.lastContactTime).fromNow()}
+                  {!lease.vehicle.lastContactTime && 'N/A'}
+            </span>
             <span>Location: <a
               className="appLink"
               href={`https://www.google.com/maps/search/?api=1&query=${lease.vehicle.location.coordinates[1]}%2C${lease.vehicle.location.coordinates[0]}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Open In Google Maps
+              Open in Google Maps
             </a></span>
             <hr></hr>
             <label><b>Battery</b></label>
