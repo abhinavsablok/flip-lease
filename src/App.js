@@ -15,10 +15,10 @@ function App() {
         </div>
 
         <div className="App">
-        <Routes>
-          <Route exact path="/lease/:id" element={<Lease />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+          <Routes>
+            <Route exact path="/lease/:id" element={<Lease />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
       </div>
     </Router>

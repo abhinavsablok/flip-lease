@@ -14,7 +14,9 @@
   
   .buttonContainer {
     display: flex;
-    padding: 20px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   
   .button {
@@ -51,5 +53,10 @@
 
   .capitalize {
     text-transform: capitalize;
-   }
+  }
+
+  .loadingText {
+    align-self: center;
+    font-weight: 600;
+  }
   
